@@ -1,0 +1,17 @@
+<%- include('./partials/header') %>
+    <h1 class="header"><%= title %></h1>
+    <nav class="flex-around">
+      <a href="/flights" <%- title === 'All flights' ? 'class="active"' : '' %>>ALL FLIGHTS</a>
+      <a href="/flights/new" <%- title === 'Add flight' ? 'class="active"' : '' %>>ADD FLIGHT</a>
+    </nav>
+    <div class="container">
+      <ul>
+        <% for( let i = 0; i < flights.length; i++ ) { %>
+          <li><%- flights[i].airline %></li>
+          <li><%- flights[i].airport %></li>
+          <li><%- flights[i].flightNo %></li>
+          <li><%- flights[i].departs %></li>
+        <% } %>
+      </ul>
+    </div>
+<%- include('./partials/footer') %>
