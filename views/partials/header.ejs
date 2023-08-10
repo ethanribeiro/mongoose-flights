@@ -5,3 +5,8 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <h1 class="header"><%= title %></h1>
+    <nav class="flex-around">
+      <a href="/flights" <%- title === 'All flights' ? 'class="active"' : '' %>>ALL FLIGHTS</a>
+      <a href="/flights/new" <%- title === 'Add flight' ? 'class="active"' : '' %>>ADD FLIGHT</a>
+    </nav>
