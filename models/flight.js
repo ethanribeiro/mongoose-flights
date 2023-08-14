@@ -6,10 +6,12 @@ const Schema = mongoose.Schema;
 const flightSchema = new Schema({
     airline: {
         type: String,
+        required: true,
         enum: ['American', 'Southwest', 'United', 'Ethan Airlines']
     },
     airport: {
         type: String,
+        required: true,
         enum: ['AUS', 'DFW', 'DEN', 'LAX', 'SAN', 'BOS'],
         default: 'BOS'
     },
@@ -21,21 +23,17 @@ const flightSchema = new Schema({
     },
     departs: {
         type: Date,
+        required: true,
         default: function () {
-            let nextYearDate = new Date();
-            return nextYearDate.setFullYear(nextYearDate.getFullYear()+1);
+            return new Date();
         }
     }
 }, {
     timestamps: true
 });
 
-function getAll() {
-    return flights
-}
+// function getAll() {
+//     return flights
+// }
 
 module.exports = mongoose.model("Flight", flightSchema);
-
-module.export = {
-    getAll
-};

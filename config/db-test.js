@@ -1,16 +1,16 @@
 //  connection string - .env
-require('dotenv').config()
+require('dotenv').config();
 
 // db - connection
-require('./database')
+require('./database');
 
 // import model 
-const Flight = require('../models/flight')
+const Flight = require('../models/flight');
 
 function createFlight(data) {
   Flight.create(data)
     .then(newFlight => console.log(newFlight))
-    .catch(err => console.log(err))
+    .catch(err => console.log(err));
 }
 
 const testData = {
@@ -19,5 +19,5 @@ const testData = {
   flightNo: 1914,
 }
 // testing database seeding
-console.log('trying to create flight data')
-createFlight(testData)
+console.log('trying to create flight data');
+createFlight(testData);

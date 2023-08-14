@@ -1,12 +1,3 @@
-<%- include('./partials/header') %>
-    <div class="container">
-      <ul>
-        <% for( let i = 0; i < flights.length; i++ ) { %>
-          <li><%- flights[i].airline %></li>
-          <li><%- flights[i].airport %></li>
-          <li><%- flights[i].flightNo %></li>
-          <li><%- flights[i].departs %></li>
-        <% } %>
-      </ul>
-    </div>
-<%- include('./partials/footer') %>
+<%- include('./partials/header.ejs') %>
+  <p>Welcome to <%= title %></p>
+<%- include('./partials/footer.ejs') %>

@@ -1,4 +1,4 @@
-<%- include('./partials/header') %>
+<%- include('../partials/header') %>
 <div class="container">
     <h2>Enter a New Flight</h2>
 
@@ -23,11 +23,14 @@
                 <option value="SAN">SAN</option>
                 <option value="BOS" selected="selected">BOS</option>
             </select>
-            <!-- <input type="number" name="releaseYear"> -->
         </label><br>
 
         <label>Flight Number:
-            <input type="number" name="flightNo">
+            <input type="number" name="flightNo" min="<%= fnMin %>" max="<%= fnMax %>" required>
+        </label><br>
+
+        <label>Departure:
+            <input type="datetime-local" name="departs" min="<%= departsDate %>" required>
         </label><br>
 
         <!-- <label>Now Showing:
@@ -40,4 +43,4 @@
     <p><%= errorMsg %></p>
 </div>
 
-<%- include('./partials/footer') %>
+<%- include('../partials/footer') %>
