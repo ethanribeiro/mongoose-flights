@@ -9,16 +9,24 @@
           <th>Departure</th>
         </tr>
       </thead>
-      <% for (let i = 0; i < flights.length; i++) { %>
-        <tbody>
-          <tr>
-            <td><%- flights[i].airline %></td>
-            <td><%- flights[i].airport %></td>
-            <td><%- flights[i].flightNo %></td>
-            <td><%- flights[i].departs.toLocaleString().slice(0, 11) + flights[i].departs.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) %></td>
-          </tr>
+      <tbody>
+          <% flights.sort((a, b) => a.departs - b.departs).forEach(flight => { %>
+            <tr <% if (flight.departs < new Date()) { %> class="late-departure" <%}%>>
+              <td>
+                <%- flight.airline %>
+              </td>
+              <td>
+                <%- flight.airport %>
+              </td>
+              <td>
+                <%- flight.flightNo %>
+              </td>
+              <td>
+                <%- flight.departs.toLocaleString().slice(0, 11) + flight.departs.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) %>
+              </td>
+            </tr>
+          <% }) %>
         </tbody>
-      <% } %>
     </table>
   </div>
 <%- include('../partials/footer') %>

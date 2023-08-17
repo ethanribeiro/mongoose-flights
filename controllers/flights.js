@@ -25,7 +25,7 @@ function newFlight(req, res) {
     const fnMax = Flight.schema.path('flightNo').options.max;
     // Obtain the default date
     const dt = newFlight.departs;
-    let departsDate = `${(dt.getFullYear() + 1)}-${(dt.getMonth() + 1).toString().padStart(2, '0')}-${dt.getDate().toString().padStart(2, '0')}T${dt.toTimeString().slice(0, 5)}`;
+    let departsDate = `${(dt.getFullYear())}-${(dt.getMonth() + 1).toString().padStart(2, '0')}-${dt.getDate().toString().padStart(2, '0')}T${dt.toTimeString().slice(0, 5)}`;
     res.render('flights/new', { departsDate, fnMin, fnMax, title: "Add Flight", errorMsg: "" });
 }
 
