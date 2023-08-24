@@ -7,6 +7,7 @@
           <th>Airport</th>
           <th>Flight Number</th>
           <th>Departure</th>
+          <th>More Info</th>
         </tr>
       </thead>
       <tbody>
@@ -23,6 +24,9 @@
               </td>
               <td>
                 <%- flight.departs.toLocaleString().slice(0, 11) + flight.departs.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) %>
+              </td>
+              <td>
+                <a href="/flights/<%= flight._id %>">More Info</a>
               </td>
             </tr>
           <% }) %>
