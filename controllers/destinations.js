@@ -35,10 +35,10 @@ async function create(req, res, next){
         // flight.destinations.push(req.body);
     
         await foundFlight.save();
+        res.redirect(`/flights/${foundFlight._id}`);
     } catch (err) {
         next(err);
     }
 
-    res.redirect(`/flights/${foundFlight._id}`);
 }
 

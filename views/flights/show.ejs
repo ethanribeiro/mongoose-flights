@@ -26,15 +26,31 @@
     <div class="flight-container-destination-show">
         <h2>Destinations</h2>
         <% if (flight.destinations.length) { %>
-            <table>
-                <% flight.destinations.forEach(function(d) { %>
-                    <tr><%= d.airport %></tr>
-                    <tr><%= d.arrival %></tr>
-                    <form action="/destinations/<%= d._id %>?_method=DELETE" method="POST">
-                        <button type="submit">X</button>
-                    </form>
-                <% }) %>
-            </table>
+            <% const sortDestinations = flight.destinations.sort((a, b) => a.arrival - b.arrival); %>
+            <%# flight.destinations.forEach(function(d) { %>
+            <% sortDestinations.forEach(function(d) { %>
+                <ul style="background-color: #fff; padding: 5px; margin: revert;">
+                    <li>
+                        Arrival Time: <%= d.arrival.toLocaleString().slice(0, 11) + d.arrival.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) %>
+                    </li>
+                    <li>
+                        Airport: <%= d.airport %>
+                    </li>
+                </ul>
+                <!-- <tr class="destinations-section">
+                    <td style="padding-bottom: inherit;">
+                        Airport: 
+                        <%#= d.airport %>
+                    </td>
+                </tr> -->
+                <!-- <tr>
+                    <td>
+                        <form action="/destinations/<%#= d._id %>?_method=DELETE" method="POST">
+                            <button type="submit">X</button>
+                        </form>
+                    </td>
+                </tr> -->
+            <% }) %>
         <% } else { %>
             <h5>No Destinations Yet</h5>
         <% } %>
@@ -42,12 +58,18 @@
         <form class="flight-table-show" method="POST" action="/flights/<%= flight._id %>/destinations">
             <label>Airport:
                 <select name="airport">
-                    <option value="AUS">AUS</option>
-                    <option value="DFW">DFW</option>
-                    <option value="DEN">DEN</option>
-                    <option value="LAX">LAX</option>
-                    <option value="SAN">SAN</option>
-                    <option value="BOS" selected="selected">BOS</option>
+                    <option value="" disabled selected>Select an Airport</option>
+                    <% const usedAirports = new Set(); %>
+                    <% usedAirports.add(flight.airport); %>
+                    <% flight.destinations.forEach(function(d) { %>
+                        <% usedAirports.add(d.airport); %>
+                    <% }); %>
+                    <% const availableAirports = ["AUS", "DFW", "DEN", "LAX", "SAN", "BOS"]; %>
+                    <% availableAirports.forEach(function(airport) { %>
+                        <% if (!usedAirports.has(airport)) { %>
+                            <option value="<%= airport %>"><%= airport %></option>
+                        <% } %>
+                    <% }); %>
                 </select>
             </label><br>
             <label>Arrival:

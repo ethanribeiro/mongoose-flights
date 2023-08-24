@@ -166,3 +166,11 @@ a {
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
 }
+
+.destinations-section {
+  padding-bottom: 1rem;
+}
+
+.destinations-section > td {
+  padding-bottom: inherit;
+}
