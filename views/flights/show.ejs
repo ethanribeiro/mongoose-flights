@@ -51,13 +51,9 @@
                 </select>
             </label><br>
             <label>Arrival:
-                <!-- <input type="datetime-local" name="arrival" min="<%#= arrivalDate %>" required> -->
+                <input type="datetime-local" name="arrival" min="<%= arrivalDate %>" required>
             </label><br>
             <input type="submit" value="Add Destination" />
-            <!-- <tr>
-                <td>Departure:</td>
-                <td><%#- flight.departs.toLocaleString().slice(0, 11) + flight.departs.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) %></td>
-            </tr> -->
         </form>
     </div>
 </div>

@@ -5,12 +5,12 @@ const Schema = mongoose.Schema;
 const destinationSchema = new Schema({
     airport: {
         type: String,
-        // required: true,
+        required: true,
         enum: ['AUS', 'DFW', 'DEN', 'LAX', 'SAN', 'BOS']
     },
     arrival: {
         type: Date,
-        // required: true,
+        required: true,
         default: function () {
             return new Date();
         }
@@ -48,9 +48,5 @@ const flightSchema = new Schema({
 }, {
     timestamps: true
 });
-
-// function getAll() {
-//     return flights
-// }
 
 module.exports = mongoose.model("Flight", flightSchema);
