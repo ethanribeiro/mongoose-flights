@@ -149,6 +149,7 @@ a {
   width: 100%;
   border-collapse: collapse;
   margin-top: 15px;
+  color: #2c3e50;
 }
 
 .flight-table-show td {
@@ -173,4 +174,19 @@ a {
 
 .destinations-section > td {
   padding-bottom: inherit;
+}
+
+.create-ticket-button {
+  width: 100%;
+}
+
+.destination-list-dis {
+  background-color: #fff;
+  padding: 8px;
+  margin: revert;
+  box-shadow: 0 0 45px rgba(0, 0, 0, 0.1);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 20px;
+  color: #2c3e50;
 }

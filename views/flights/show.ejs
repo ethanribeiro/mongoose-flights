@@ -20,6 +20,28 @@
                     <td>Departure:</td>
                     <td><%- flight.departs.toLocaleString().slice(0, 11) + flight.departs.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) %></td>
                 </tr>
+                <tr>
+                    <td>
+                        <% if (tickets.length > 0) { %>
+                            <a href="/flights/<%= flight._id %>/tickets/new">Tickets:</a>
+                        <% } else { %>
+                            <a href="/flights/<%= flight._id %>/tickets/new">Add Ticket:</a>
+                        <% } %>
+                    </td>
+                    <td>
+                        <% if (tickets.length > 0) { %>
+                            <% tickets.forEach(function(t) { %>
+                                <%- t.seat %>
+                                <form action="/flights/<%= flight._id %>/tickets/<%= t._id %>?_method=DELETE" method="POST" style="display: inline;">
+                                    <button type="submit" class="delete-button">X</button>
+                                </form>
+                                <br>
+                            <% }); %>
+                        <% } else { %>
+                            No Tickets Yet
+                        <% } %>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -29,7 +51,7 @@
             <% const sortDestinations = flight.destinations.sort((a, b) => a.arrival - b.arrival); %>
             <%# flight.destinations.forEach(function(d) { %>
             <% sortDestinations.forEach(function(d) { %>
-                <ul style="background-color: #fff; padding: 5px; margin: revert;">
+                <ul class="destination-list-dis">
                     <li>
                         Arrival Time: <%= d.arrival.toLocaleString().slice(0, 11) + d.arrival.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) %>
                     </li>

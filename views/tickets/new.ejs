@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1 class="header"><%= title %></h1>
+    <nav class="flex-around">
+      <a href="/flights" <%- title === 'All flights' ? 'class="active"' : '' %>>ALL FLIGHTS</a>
+      <a href="/flights/new" <%- title === 'Add flight' ? 'class="active"' : '' %>>ADD FLIGHT</a>
+    </nav>
+    <div class="flight-container-show">
+        <div class="flight-container">
+            <form action="/flights/<%= flightId %>/tickets" method="POST">
+                <label>Seat:</label>
+                <input name="seat" required pattern="[A-F][1-9]\d?" maxlength="3" minlength="2" oninput="this.value = this.value.toUpperCase()">
+                <hr />
+                <label>Price:</label>
+                $<input type="number"  name="price" required pattern="[A-F][1-9]\d?">
+                <hr />
+                <input type="submit" value="Create Ticket" class="create-ticket-button">
+            </form>
+        </div>
+    </div>
+<%- include('../partials/footer') %>

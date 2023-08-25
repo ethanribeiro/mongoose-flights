@@ -1,4 +1,5 @@
 const Flight = require("../models/flight");
+const Ticket = require("../models/ticket");
 
 module.exports = {
     index,
@@ -29,17 +30,6 @@ function newFlight(req, res) {
     res.render('flights/new', { departsDate, fnMin, fnMax, title: "Add Flight", errorMsg: "" });
 }
 
-// function newDestination(req, res) {
-//     const newDestination = new Flight();
-//     // Obtain the default date
-//     const dt = newDestination.arrival;
-//     let arrivalDate = `${(dt.getFullYear())}-${(dt.getMonth() + 1).toString().padStart(2, '0')}-${dt.getDate().toString().padStart(2, '0')}T${dt.toTimeString().slice(0, 5)}`;
-//     res.render("flights/show", {
-//         title: "Flight Detail",
-//         arrivalDate
-//     });
-// }
-
 async function create(req, res) {
     const flightData = { ...req.body };
     try {
@@ -55,20 +45,24 @@ async function create(req, res) {
 async function show(req, res, next) {
     try {
         const id = req.params.id;
+        console.log(id)
         const flight = await Flight.findById(id);
-        console.log(flight.destinations);
+        console.log(Flight);
 
         const dt = flight.departs;
-        // console.log(typeof(flight.destinations.airport))
         let arrivalDate = `${(dt.getFullYear())}-${(dt.getMonth() + 1).toString().padStart(2, '0')}-${dt.getDate().toString().padStart(2, '0')}T${dt.toTimeString().slice(0, 5)}`;
 
-        // console.log(arrivalDate)
+        const tickets = await Ticket.find({flight: flight._id})
+
+        console.log(tickets)
 
         res.render("flights/show", {
             title: "Flight Detail",
             flight,
-            arrivalDate
+            arrivalDate,
+            tickets
         });
+
     } catch (err) {
         console.log(err);
         next(Error(err));

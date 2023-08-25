@@ -35,7 +35,8 @@ const flightSchema = new Schema({
         type: Number,
         required: true,
         min: 10,
-        max: 9999
+        max: 9999,
+        unique: true
     },
     departs: {
         type: Date,
